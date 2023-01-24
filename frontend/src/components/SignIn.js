@@ -46,6 +46,8 @@ export default function SignIn() {
 
           setUserLogin(true)
           navigate("/")
+           // for updating profile picture on Navbar we are reloading 
+             window.location.reload();
         }
         console.log(data)
       })
