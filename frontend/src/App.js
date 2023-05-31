@@ -14,6 +14,7 @@ import { LoginContext } from "./context/LoginContext";
 import Modal from "./components/Modal";
 import UserProfie from "./components/UserProfile";
 import MyFolliwngPost from "./screens/MyFollowingPost";
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 function App() {
   const [userLogin, setUserLogin] = useState(false);
@@ -21,6 +22,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
+      <GoogleOAuthProvider clientId="852972554695-d2h4p1s3mqdn7ojl61ue21c9melgnjc5.apps.googleusercontent.com">
         <LoginContext.Provider value={{ setUserLogin, setModalOpen }}>
           <Navbar login={userLogin} />
           <Routes>
@@ -36,6 +38,7 @@ function App() {
 
           {modalOpen && <Modal setModalOpen={setModalOpen}></Modal>}
         </LoginContext.Provider>
+        </GoogleOAuthProvider>
       </div>
     </BrowserRouter>
   );
