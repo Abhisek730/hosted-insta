@@ -8,9 +8,13 @@ const POST = mongoose.model("POST")
 
 // Route
 router.get("/allposts", requireLogin, (req, res) => {
+    let limit = req.query.limit
+    let skip = req.query.skip
     POST.find()
         .populate("postedBy", "_id name Photo")
         .populate("comments.postedBy", "_id name")
+        .skip(parseInt(skip))
+        .limit(parseInt(limit))
         .sort("-createdAt")
         .then(posts => res.json(posts))
         .catch(err => console.log(err))
